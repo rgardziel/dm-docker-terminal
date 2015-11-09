@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Docker Playground</title>
+    <link rel="icon" type="image/png" href="http://docker.com/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="http://docker.com/sites/all/themes/docker/assets/css/app.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io-stream.js"></script>
+    <script src="/terminal.js"></script>
+    <style>
+    .terminaljs {
+        background: black;
+        color: white;
+        font-family: Courier, monospace;
+        display: inline-block;
+    }
+    </style>
+</head>
+
+<body class="html front not-logged-in no-sidebars page-node page-node- page-node-1 node-type-front-page path-docker" ng-app="Docker" ng-controller="DockerController">
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
+            <a class="left-off-canvas-toggle" href="#">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35px" height="35px" viewBox="0 0 35 35" enable-background="new 0 0 35 35" xml:space="preserve">
+                    <path fill="#3597D4" d="M30.583,9.328c0,0.752-0.539,1.362-1.203,1.362H5.113c-0.664,0-1.203-0.61-1.203-1.362l0,0
+
+		c0-0.752,0.539-1.362,1.203-1.362H29.38C30.045,7.966,30.583,8.576,30.583,9.328L30.583,9.328z" />
+                    <path fill="#3597D4" d="M30.583,17.09c0,0.752-0.539,1.362-1.203,1.362H5.113c-0.664,0-1.203-0.61-1.203-1.362l0,0
+
+		c0-0.752,0.539-1.362,1.203-1.362H29.38C30.045,15.728,30.583,16.338,30.583,17.09L30.583,17.09z" />
+                    <path fill="#3597D4" d="M30.583,24.387c0,0.752-0.539,1.362-1.203,1.362H5.113c-0.664,0-1.203-0.61-1.203-1.362l0,0
+
+		c0-0.752,0.539-1.362,1.203-1.362H29.38C30.045,23.025,30.583,23.635,30.583,24.387L30.583,24.387z" />
+                </svg>
+            </a>
+            <a class="button secondary small get-started-cta">Get Started</a>
+            <header class="main-header">
+                <div class="row">
+                    <div class="large-3 columns">
+                        <a href="https://docker.com/"><img class="logo" src="https://docker.com/sites/all/themes/docker/assets/images/logo.png"></a>
+                    </div>
+                    <div class="large-9 columns">
+                        <ul class="nav-global">
+                            <li class="first leaf menu-mlid-603"><a href="https://docs.docker.com/">Docs</a></li>
+                            <li class="leaf has-children menu-mlid-500"><a href="https://docker.com/support">Support</a></li>
+                            <li class="leaf menu-mlid-402"><a href="https://training.docker.com/">Training</a></li>
+                            <li class="leaf menu-mlid-967"><a href="http://blog.docker.com/category/engineering/">Tech Blog</a></li>
+                            <li class="leaf menu-mlid-602"><a href="http://blog.docker.com/">Blog</a></li>
+                            <li class="leaf menu-mlid-604"><a href="https://hub.docker.com/account/signup/">Docker Hub</a></li>
+                            <li class="last leaf menu-mlid-605"><a href="http://docs.docker.com/mac/started/" class="button" target="_blank">Get Started</a></li>
+                        </ul>
+                        <ul class="nav-main">
+                            <li class="first expanded menu-mlid-954 has-submenu"><a href="https://docker.com/products-0">Products</a>
+                                <ul class="nav-main">
+                                    <li class="first expanded menu-mlid-955 has-submenu"><a href="https://docker.com/products-0">Products</a>
+                                        <ul class="nav-main">
+                                            <li class="first leaf menu-mlid-952"><a href="https://docker.com/docker-subscription">Docker Subscription</a></li>
+                                            <li class="leaf menu-mlid-515"><a href="https://docker.com/docker-hub">Docker Hub</a></li>
+                                            <li class="leaf menu-mlid-599"><a href="https://docker.com/docker-trusted-registry">Docker Trusted Registry</a></li>
+                                            <li class="leaf menu-mlid-434"><a href="https://docker.com/docker-engine">Docker Engine</a></li>
+                                            <li class="leaf menu-mlid-600"><a href="https://docker.com/docker-kitematic">Docker Kitematic</a></li>
+                                            <li class="leaf menu-mlid-619"><a href="https://docker.com/docker-registry">Docker Registry</a></li>
+                                            <li class="leaf menu-mlid-601"><a href="https://docker.com/docker-machine">Docker Machine</a></li>
+                                            <li class="leaf menu-mlid-427"><a href="https://docker.com/docker-swarm">Docker Swarm</a></li>
+                                            <li class="last leaf menu-mlid-417"><a href="https://docker.com/docker-compose">Docker Compose</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="leaf menu-mlid-398"><a href="https://docker.com/whatisdocker">What is Docker?</a></li>
+                                    <li class="last leaf menu-mlid-399"><a href="https://docker.com/pricing">Pricing</a></li>
+                                </ul>
+                            </li>
+                            <li class="leaf menu-mlid-406"><a href="https://docker.com/customers">Customers</a></li>
+                            <li class="expanded menu-mlid-546 has-submenu"><a href="https://docker.com/community">Community</a>
+                                <ul class="nav-main">
+                                    <li class="first leaf menu-mlid-549"><a href="https://docker.com/community" title="">Community</a></li>
+                                    <li class="leaf menu-mlid-447"><a href="https://docker.com/community/events">Events</a></li>
+                                    <li class="leaf menu-mlid-449"><a href="https://docker.com/community/meetups">Meetups</a></li>
+                                    <li class="leaf menu-mlid-547"><a href="https://forums.docker.com/" target="_blank">Forums</a></li>
+                                    <li class="last leaf menu-mlid-548"><a href="http://www.scoop.it/t/docker-by-docker" target="_blank">Community News</a></li>
+                                </ul>
+                            </li>
+                            <li class="expanded menu-mlid-404 has-submenu"><a href="https://docker.com/partners">Partners</a>
+                                <ul class="nav-main">
+                                    <li class="first leaf menu-mlid-553"><a href="https://docker.com/partners" title="">Partners</a></li>
+                                    <li class="last leaf menu-mlid-552"><a href="https://docker.com/partners/partner-programs">Partner Programs</a></li>
+                                </ul>
+                            </li>
+                            <li class="expanded menu-mlid-397 has-submenu"><a href="https://docker.com/company">Company</a>
+                                <ul class="nav-main">
+                                    <li class="first leaf menu-mlid-698"><a href="https://docker.com/company">Company</a></li>
+                                    <li class="leaf menu-mlid-538"><a href="https://docker.com/company/management">Management</a></li>
+                                    <li class="leaf menu-mlid-597"><a href="https://docker.com/news-and-press">News &amp; Press</a></li>
+                                    <li class="leaf menu-mlid-622"><a href="https://docker.com/work-docker">Work at Docker</a></li>
+                                    <li class="last leaf menu-mlid-507"><a href="https://docker.com/company/contact">Contact</a></li>
+                                </ul>
+                            </li>
+                            <li class="last expanded menu-mlid-620 has-submenu"><a href="https://docker.com/open-source">Open Source</a>
+                                <ul class="nav-main">
+                                    <li class="first leaf menu-mlid-621"><a href="https://docker.com/open-source">Open Source</a></li>
+                                    <li class="last leaf menu-mlid-459"><a href="https://docker.com/contribute">Contribute</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <aside class="left-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    <li class="first expanded menu-mlid-954 has-submenu"><a href="https://docker.com/products-0">Products</a>
+                        <ul class="left-submenu">
+                            <li class="back"><a href="#">Back</a></li>
+                            <li class="first expanded menu-mlid-955 has-submenu"><a href="https://docker.com/products-0">Products</a>
+                                <ul class="left-submenu">
+                                    <li class="back"><a href="#">Back</a></li>
+                                    <li class="first leaf menu-mlid-952"><a href="https://docker.com/docker-subscription">Docker Subscription</a></li>
+                                    <li class="leaf menu-mlid-515"><a href="https://docker.com/docker-hub">Docker Hub</a></li>
+                                    <li class="leaf menu-mlid-599"><a href="https://docker.com/docker-trusted-registry">Docker Trusted Registry</a></li>
+                                    <li class="leaf menu-mlid-434"><a href="https://docker.com/docker-engine">Docker Engine</a></li>
+                                    <li class="leaf menu-mlid-600"><a href="https://docker.com/docker-kitematic">Docker Kitematic</a></li>
+                                    <li class="leaf menu-mlid-619"><a href="https://docker.com/docker-registry">Docker Registry</a></li>
+                                    <li class="leaf menu-mlid-601"><a href="https://docker.com/docker-machine">Docker Machine</a></li>
+                                    <li class="leaf menu-mlid-427"><a href="https://docker.com/docker-swarm">Docker Swarm</a></li>
+                                    <li class="last leaf menu-mlid-417"><a href="https://docker.com/docker-compose">Docker Compose</a></li>
+                                </ul>
+                            </li>
+                            <li class="leaf menu-mlid-398"><a href="https://docker.com/whatisdocker">What is Docker?</a></li>
+                            <li class="last leaf menu-mlid-399"><a href="https://docker.com/pricing">Pricing</a></li>
+                        </ul>
+                    </li>
+                    <li class="leaf menu-mlid-406"><a href="https://docker.com/customers">Customers</a></li>
+                    <li class="expanded menu-mlid-546 has-submenu"><a href="https://docker.com/community">Community</a>
+                        <ul class="left-submenu">
+                            <li class="back"><a href="#">Back</a></li>
+                            <li class="first leaf menu-mlid-549"><a href="https://docker.com/community" title="">Community</a></li>
+                            <li class="leaf menu-mlid-447"><a href="https://docker.com/community/events">Events</a></li>
+                            <li class="leaf menu-mlid-449"><a href="https://docker.com/community/meetups">Meetups</a></li>
+                            <li class="leaf menu-mlid-547"><a href="https://forums.docker.com/" target="_blank">Forums</a></li>
+                            <li class="last leaf menu-mlid-548"><a href="http://www.scoop.it/t/docker-by-docker" target="_blank">Community News</a></li>
+                        </ul>
+                    </li>
+                    <li class="expanded menu-mlid-404 has-submenu"><a href="https://docker.com/partners">Partners</a>
+                        <ul class="left-submenu">
+                            <li class="back"><a href="#">Back</a></li>
+                            <li class="first leaf menu-mlid-553"><a href="https://docker.com/partners" title="">Partners</a></li>
+                            <li class="last leaf menu-mlid-552"><a href="https://docker.com/partners/partner-programs">Partner Programs</a></li>
+                        </ul>
+                    </li>
+                    <li class="expanded menu-mlid-397 has-submenu"><a href="https://docker.com/company">Company</a>
+                        <ul class="left-submenu">
+                            <li class="back"><a href="#">Back</a></li>
+                            <li class="first leaf menu-mlid-698"><a href="https://docker.com/company">Company</a></li>
+                            <li class="leaf menu-mlid-538"><a href="https://docker.com/company/management">Management</a></li>
+                            <li class="leaf menu-mlid-597"><a href="https://docker.com/news-and-press">News &amp; Press</a></li>
+                            <li class="leaf menu-mlid-622"><a href="https://docker.com/work-docker">Work at Docker</a></li>
+                            <li class="last leaf menu-mlid-507"><a href="https://docker.com/company/contact">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="last expanded menu-mlid-620 has-submenu"><a href="https://docker.com/open-source">Open Source</a>
+                        <ul class="left-submenu">
+                            <li class="back"><a href="#">Back</a></li>
+                            <li class="first leaf menu-mlid-621"><a href="https://docker.com/open-source">Open Source</a></li>
+                            <li class="last leaf menu-mlid-459"><a href="https://docker.com/contribute">Contribute</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav-global-off-canvas">
+                    <li class="first leaf menu-mlid-603"><a href="https://docs.docker.com/">Docs</a></li>
+                    <li class="leaf has-children menu-mlid-500"><a href="https://docker.com/support">Support</a></li>
+                    <li class="leaf menu-mlid-402"><a href="https://training.docker.com/">Training</a></li>
+                    <li class="leaf menu-mlid-967"><a href="http://blog.docker.com/category/engineering/">Tech Blog</a></li>
+                    <li class="leaf menu-mlid-602"><a href="http://blog.docker.com/">Blog</a></li>
+                    <li class="leaf menu-mlid-604"><a href="https://hub.docker.com/account/signup/">Docker Hub</a></li>
+                    <li class="last leaf menu-mlid-605"><a href="http://docs.docker.com/mac/started/" class="button" target="_blank">Get Started</a></li>
+                </ul>
+            </aside>
+            <section class="hero" lazy-background="https://www.docker.com/sites/default/files/island_1.png" lazy-background-small="">
+                <div class="row">
+                    <div class="medium-7 medium-push-1 large-7 large-push-1 columns">
+                        <pre style="float: right" class="terminaljs" data-columns="80" data-rows="24"></pre>
+                    </div>
+                    <div class="medium-pull-1 medium-4 large-3 large-pull-1 columns">
+                        <h1>Docker Playground</h1>
+                        <div style="color: white;">
+                            <span>Some instructions telling the user to try commands like:</span>
+                            <ul>
+                                <li><code>docker run --rm hello-world</code></li>
+                                <li><code>docker pull alpine</code></li>
+                                <li><code>docker run --rm -it alpine ls -al</code></li>
+                                <li><code>docker images</code></li>
+                                <li><code>docker ps -a</code></li>
+                            </ul>
+                            <span>Note: this is a real terminal, and a real Docker client, talking to a real Docker server</span>
+                        </div>
+                        <script>
+                        var containers = document.getElementsByClassName('terminaljs'),
+                            socket = io(location.origin + '/pty'),
+                            term, stream;
+                        for (var i = 0; i < containers.length; i++) {
+
+                            // setting tabindex makes the element focusable
+                            containers[i].tabindex = 0;
+
+                            // use data-* attributes to configure terminal and child_pty
+                            term = new Terminal(containers[i].dataset);
+
+                            // Create bidirectional stream
+                            stream = ss.createStream({
+                                decodeStrings: false,
+                                encoding: 'utf-8'
+                            });
+
+                            // Send stream and options to the server
+                            ss(socket).emit('new', stream, containers[i].dataset);
+
+                            // Connect everything up
+                            stream.pipe(term).dom(containers[i]).pipe(stream);
+                        }
+                        </script>
+                    </div>
+                </div>
+            </section>
+</body>
+
+</html>
