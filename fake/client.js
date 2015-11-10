@@ -12,7 +12,7 @@ fake.run = function(options) {
 
 	fake.options = options || {};
 
-	currentStep = 0;
+	currentStep = 1;
 	fake.setStep(currentStep)
 
 	fake.term = new terminal({
@@ -116,7 +116,7 @@ fake.command = function (str) {
 	}
 }
 fake.prevStep = function() {
-	if (currentStep > 0) {
+	if (currentStep > 1) {
 		fake.setStep(--currentStep)
 	}
 }
@@ -127,11 +127,15 @@ fake.nextStep = function() {
 }
 fake.setStep = function(step) {
        	fake.options.intro.innerHTML = tutorial[step].intro;
-   	    fake.options.task.innerHTML = tutorial[step].task;
+   	    // fake.options.task.innerHTML = tutorial[step].task;
         fake.options.tip.innerHTML = tutorial[step].tip;
+        fake.options.result.innerHTML = tutorial[step].result;
         fake.options.command_tip_box.innerHTML = tutorial[step].command_tip_box;
 		fake.options.progress.innerHTML = fake.listOfWhales(step, tutorial.length)
 }
+// fake.showResult = funtion () {
+// 	fake.options.tip.innerHTML = 
+// }
 fake.listOfWhales = function(step, total) {
 	output = "Step: " + step + " of " + total + " ";
 	for (i=0; i<total; i++) {
@@ -150,11 +154,16 @@ fake.listOfWhales = function(step, total) {
 	fake.run({
 		progress: document.getElementById("progress"),
 		intro: document.getElementById("intro"),
-		task: document.getElementById("task"),
+		// task: document.getElementById("task"),
 		tip: document.getElementById("tip"),
 		command_tip_box: document.getElementById("code-string"),
+		result: document.getElementById("result"),
 		parent: e
 	})
 	document.getElementById("stepForward").onclick = fake.nextStep;
 	document.getElementById("stepBack").onclick = fake.prevStep;
+	$('#stepForward').click(function(event) {
+		$('#result').css('display', 'block');
+		console.log('click');
+	});
 });

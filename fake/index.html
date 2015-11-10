@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="http://docker.com/sites/all/themes/docker/assets/css/app.css" />
     <link rel="stylesheet" href="/css/xterm.css" />
     <script data-main="client" src="/require.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
     var commands = {};
     </script>
@@ -24,33 +25,43 @@
         max-width: 140rem;
         min-width: 120rem;
     }
-    /*------------
+/*------------
 DM Custom Styles begin 
 ------------*/
+    
+    html,
+    body {
+        height: 100%;
+    }
     
     body {
         background: #DEE6EE;
     }
-.clearfix:after {
-    clear: both;
-    content: ".";
-    display: block;
-    height: 0;
-    visibility: hidden;
-}
-.clearfix {
-    display: inline-block;
-}
-.clearfix {
-    display: block;
-}
+    
+    .clearfix:after {
+        clear: both;
+        content: ".";
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+    
+    .clearfix {
+        display: inline-block;
+    }
+    
+    .clearfix {
+        display: block;
+    }
+    
     .content-wrap {
         margin: 25px;
+        min-height: 100%;
     }
     
     .content {
         max-width: 1200px;
-        min-height: 800px;
+		min-height: 100%;
         margin: 37px auto;
         background: #fff;
     }
@@ -58,7 +69,10 @@ DM Custom Styles begin
     .step-wizard {
         padding: 22px 15px 22px 25px;
     }
-    
+    .step-wizard #result p {
+    	color: #00DA53;
+    	font-weight: bold;
+    }
     .step-wizard .steps {
         font-size: 14px;
         color: #C4CDDB;
@@ -70,8 +84,9 @@ DM Custom Styles begin
         width: 20px;
         margin-left: 5px;
     }
+    
     .step-wizard .steps img:first-of-type {
-    	margin-left: 20px;
+        margin-left: 20px;
     }
     
     .step-wizard h3 {
@@ -95,7 +110,6 @@ DM Custom Styles begin
     .terminal-wrap {
         min-height: 800px;
         background: #3E5168;
-        max-width: 835px;
         padding: 22px 30px;
     }
     
@@ -131,16 +145,21 @@ DM Custom Styles begin
         border: 1px solid #06B7ED;
         padding: 3px 5px;
         background: #F1F7FD;
+        white-space: nowrap;
     }
+    
     .button-wrap {
-		margin-top: 1.25rem
+        margin-top: 1.25rem
     }
+    
     #stepBack {
-    	float: left;
+        float: left;
     }
+    
     #stepForward {
-    	float: right;
+        float: right;
     }
+    
     .step-wizard-footer #tips {
         font-style: italic;
         font-size: 16px;
@@ -313,45 +332,27 @@ DM Custom Styles begin
                     <li class="last leaf menu-mlid-605"><a href="http://docs.docker.com/mac/started/" class="button" target="_blank">Get Started</a></li>
                 </ul>
             </aside>
-            <!-- <section class="hero" lazy-background="https://www.docker.com/sites/default/files/island_1.png" lazy-background-small="">
-	<div class="row">
-		<div class="small-12 columns">
-			<button id="stepBack">Previous</button>
-			<span id="progress"> </span>
-			<button id="stepForward">Next</button>
-		</div>
-		<div class="small-12 columns">
-			<div id="terminal"> </div>
-		</div>
-		<div class="small-12 columns">
-			<div id="intro"></div>
-			<div id="task"></div>
-		</div>
-		<div class="small-12 columns">
-			<div id="tip" style="color: white;"></div>
-		</div>
-	</div>
-</section> -->
             <section class="content-wrap">
                 <div class="content">
                     <div class="row">
-                        <div class="small-12 medium-4 columns step-wizard">
+                        <div class="small-12 medium-12 large-4 columns step-wizard">
+                        <div id="result" class="hide"></div>
                             <div class="steps" id="progress">Step 1 of 9</div>
-                            <div id="task"></div>
+                            <!--                             <div id="task"></div> -->
                             <h1 id="intro"></h1>
                             <div class="code-wrap"><code id="code-string"></code>
                                 <div class="code-paste-icon" id="code-cmd"></div>
                             </div>
                             <div class="button-wrap clearfix">
-                            <button id="stepBack">Previous</button>
-                            <button id="stepForward">Next</button>
+                                <button id="stepBack">Previous</button>
+                                <button id="stepForward">Next</button>
                             </div>
                             <div class="step-wizard-footer">
                                 <div id="tip">Tip: Try typing docker to see the full list of accepted argument</div>
                                 <div class="step-wizard-disclaimer">This emulator provides only a limited set of shell and Docker commands, some commands may not work as expected.</div>
                             </div>
                         </div>
-                        <div class="small-12 medium-8 columns terminal-wrap">
+                        <div class="small-12 medium-12 large-8 columns terminal-wrap">
                             <div id="terminal"></div>
                         </div>
                     </div>
