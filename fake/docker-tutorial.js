@@ -69,7 +69,7 @@ return [
         return "You have not specified the correct repository name to commit to (learn/ping). This works, but giving your images a name\nmakes them much easier to work with.";
       }
     ],
-    tip: "<ul>\nTip: <li>Giving just <code>docker commit</code> will show you the possible arguments.</li>\n<li>You will need to specify the container to commit by the ID you found</li>\n<li>You don't need to copy (type) the entire ID. Three or four characters are usually enough.</li>\n</ul>"
+    tip: "<ul>\n<li>Giving just <code>docker commit</code> will show you the possible arguments.</li>\n<li>You will need to specify the container to commit by the ID you found</li>\n<li>You don't need to copy (type) the entire ID. Three or four characters are usually enough.</li>\n</ul>"
   },
   {
     intro: "<h3>Run your new image</h3>\n<p>Now you have basically setup a complete, self contained environment with the 'ping' program installed. </p>\n<p>Your image can now be run on any host that runs Docker.</p>\n<p>Lets run this image on this machine.</p>",
@@ -82,7 +82,7 @@ return [
         return "You have not specified a repository name. This is not wrong, but giving your images a name\nmake them much easier to work with.";
       }
     ],
-    tip: "Tip: <ul>\n<li>Make sure to use the repository name learn/ping to run ping with</li>\n</ul>"
+    tip: "<ul>\n<li>Make sure to use the repository name learn/ping to run ping with</li>\n</ul>"
   },
   {
     intro: "<h3>Check your running image</h3>\n<p>You now have a running container. Let's see what is going on.</p>\n<p>Using <code>docker ps</code> we can see a list of all running containers, and using <code>docker inspect</code>\nwe can see all sorts of useful information about this container.</p>",
@@ -95,7 +95,7 @@ return [
         return "You have not specified a repository name. This is not wrong, but giving your images a name\nmake them much easier to work with.";
       }
     ],
-    tip: "Tip: <ul>\n<li>Remember you can use a partial match of the image id</li>\n</ul>",
+    tip: "<ul>\n<li>Remember you can use a partial match of the image id</li>\n</ul>",
     currentDockerPs: "ID                  IMAGE               COMMAND               CREATED             STATUS              PORTS\nefefdc74a1d5        learn/ping:latest   ping www.google.com   37 seconds ago      Up 36 seconds"
   },
   {
@@ -116,7 +116,7 @@ return [
 	return "<p>All done!. You are now pushing a container image to the index. You can see that push, just like pull, happens layer by layer.</p>";
       }
     ],
-    tip: "Tip: <ul>\n<li><code>docker images</code> will show you which images are currently on your host</li>\n<li><code>docker push</code>is the command to push images</li>\n<li>You can only push images to your own namespace, this emulator is logged in as user 'learn'</li>\n\n</ul>",
+    tip: "<ul>\n<li><code>docker images</code> will show you which images are currently on your host</li>\n<li><code>docker push</code>is the command to push images</li>\n<li>You can only push images to your own namespace, this emulator is logged in as user 'learn'</li>\n\n</ul>",
     finishedCallback: function() {
       //webterm.clear(,      return webterm.echo(myTerminal(),    
     }
