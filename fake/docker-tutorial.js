@@ -23,15 +23,15 @@ return [
   {
     intro: "<h3>Downloading container images</h3>\n<p>Container images can be downloaded just as easily, using <code>docker pull</code>.</p>\n<p>For images from the central index, the name you specify is constructed as &lt;username&gt;/&lt;repository&gt;</p>\n<p>A group of special, trusted images such as the ubuntu base image can be retrieved by just their name &lt;repository&gt;.</p>",
     task: "<h3>Assignment</h3>\n<p>Please download the tutorial image you have just found</p>",
-    command_expected: ['docker', 'pull', 'learn/tutorial'],
+    command_expected: ['docker', 'pull', 'learn'],
     result: "<p>Cool. Look at the results. You'll see that Docker has downloaded a number of layers. In Docker all images (except the base image) are made up of several cumulative layers.</p>",
-    tip: "<p>Tip: Don't forget to pull the full name of the repository e.g. 'learn/tutorial'</p>\n<p>Look under 'show expected command if you're stuck.</p>",
-    command_tip_box: "docker pull tutorial"
+    tip: "<p>Tip: Don't forget to pull the full name of the repository e.g. 'learn'</p>\n<p>Look under 'show expected command if you're stuck.</p>",
+    command_tip_box: "docker pull learn"
   },
   {
     intro: "<h3>Hello world from a container</h3>\n<p>You can think about containers as a process in a box. The box contains everything the process might need, so\nit has the filesystem, system libraries, shell and such, but by default none of it is started or run.<p>\n<p>You 'start' a container <em>by</em> running a process in it. This process is the only process run, so when\nit completes the container is fully stopped.",
     task: "<h3>Assignment</h3>\n<p>Make our freshly loaded container image output \"hello world\"</p>\n<p>To do so you should run 'echo' in the container and have that say \"hello world\"\n",
-    command_expected: ["docker", "run", "learn/tutorial", "echo", "hello"],
+    command_expected: ['echo "hello world"'],
     command_show: ["docker", "run", "learn/tutorial", 'echo "hello world"'],
     command_tip_box: "echo \"hello world\"",
     result: "<p>Great! Hellooooo World!</p><p>You have just started a container and executed a program inside of it, when\nthe program stopped, so did the container.",
@@ -47,7 +47,7 @@ return [
   {
     intro: "<h3>Installing things in the container</h3>\n<p>Next we are going to install a simple program (ping) in the container. The image is based upon ubuntu, so you\ncan run the command <code>apt-get install -y ping</code> in the container. </p>\n<p>Note that even though the container stops right after a command completes, the changes are not forgotten.</p>",
     task: "<h3>Assignment</h3>\n<p>Install 'ping' on top of the learn/tutorial image.</p>",
-    command_expected: ["docker", "run", "learn/tutorial", "apt-get", "install", "-y", "ping"],
+    command_expected: ["apt-get install -y ping"],
     command_tip_box: "apt-get install -y ping",
     result: "<p>That worked! You have installed a program on top of a base image. Your changes to the filesystem have been\nkept, but are not yet saved.</p>",
     intermediateresults: [
@@ -60,7 +60,7 @@ return [
   {
     intro: "<h3>Save your changes</h3>\n<p>After you make changes (by running a command inside a container), you probably want to save those changes.\nThis will enable you to later start from this point onwards.</p>\n<p>With Docker, the process of saving the state is called <em>committing</em>. Commit basically saves the difference\nbetween the old image and the new state. The result is a new layer.</p>",
     task: "<h3>Assignment</h3>\n<p>First use <code>docker ps -l</code> to find the ID of the container you created by installing ping.</p>\n<p>Then save (commit) this container with the repository name 'learn/ping' </p>",
-    command_expected: ["docker", "commit", "698", "learn/ping"],
+    command_expected: ["docker", "commit"],
     command_show: ["docker", "commit", "698", 'learn/ping'],
     command_tip_box: "docker commit",
     result: "<p>That worked! Please take note that Docker has returned a new ID. This id is the <em>image id</em>.</p>",
@@ -74,7 +74,7 @@ return [
   {
     intro: "<h3>Run your new image</h3>\n<p>Now you have basically setup a complete, self contained environment with the 'ping' program installed. </p>\n<p>Your image can now be run on any host that runs Docker.</p>\n<p>Lets run this image on this machine.</p>",
     task: "<h3>Assignment</h3>\n<p>Run the ping program to ping www.google.com</p>\n",
-    command_expected: ["docker", "run", 'learn/ping', 'ping', 'google.com'],
+    command_expected: ["docker", "run", 'ping'],
     result: "<p>That worked! Note that normally you can use Ctrl-C to disconnect. The container will keep running. This\ncontainer will disconnect automatically.</p>",
     command_tip_box: "docker run ping",
     intermediateresults: [
@@ -87,7 +87,7 @@ return [
   {
     intro: "<h3>Check your running image</h3>\n<p>You now have a running container. Let's see what is going on.</p>\n<p>Using <code>docker ps</code> we can see a list of all running containers, and using <code>docker inspect</code>\nwe can see all sorts of useful information about this container.</p>",
     task: "<h3>Assignment</h3>\n<p><em>Find the container id</em> of the running container, and then inspect the container using <em>docker inspect</em>.</p>\n",
-    command_expected: ["docker", "inspect", "efe"],
+    command_expected: ["docker", "inspect"],
     command_tip_box: "docker inspect",
     result: "<p>Success! Have a look at the output. You can see the ip-address, status and other information.</p>",
     intermediateresults: [
@@ -101,7 +101,7 @@ return [
   {
     intro: "<h3>Push your image to the index</h3>\n<p>Now you have verified that your application container works, you can share it.</p>\n<p>Remember you pulled (downloaded) the learn/tutorial image from the index? You can also share your built images\nto the index by pushing (uploading) them to there. That way you can easily retrieve them for re-use and share them\nwith others. </p>",
     task: "<h3>Assignment</h3>\n<p>Push your container image learn/ping to the index</p>\n",
-    command_expected: ["will_never_be_valid"],
+    command_expected: ["docker", "push", "ping"],
     command_show: ["docker", "push", "learn/ping"],
     command_tip_box: "docker push ping",
     result: "",

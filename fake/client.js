@@ -138,13 +138,14 @@ fake.setStep = function(step) {
 // }
 fake.listOfWhales = function(step, total) {
 	output = "Step: " + step + " of " + total + " ";
-	for (i=0; i<total; i++) {
-		if (i < step) {
-			output = output + ' <img src="https://docs.docker.com/images/favicon.png" alt="docker logo">'
-		} else {
-			output = output + ' <img src="https://hub.docker.com/public/images/logos/mini-logo.svg" alt="docker logo">'
-		}
-	}
+	// Remove step imgs
+	// for (i=0; i<total; i++) {
+	// 	if (i < step) {
+	// 		output = output + ' <img src="https://docs.docker.com/images/favicon.png" alt="docker logo">'
+	// 	} else {
+	// 		output = output + ' <img src="https://hub.docker.com/public/images/logos/mini-logo.svg" alt="docker logo">'
+	// 	}
+	// }
 
 	return output
 }
@@ -162,8 +163,4 @@ fake.listOfWhales = function(step, total) {
 	})
 	document.getElementById("stepForward").onclick = fake.nextStep;
 	document.getElementById("stepBack").onclick = fake.prevStep;
-	$('#stepForward').click(function(event) {
-		$('#result').css('display', 'block');
-		console.log('click');
-	});
 });
